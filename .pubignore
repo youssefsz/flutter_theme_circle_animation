@@ -1,0 +1,23 @@
+# Documentation & Assets
+doc/screenshots/
+
+# IDE / Project Files
+.idea/
+.vscode/
+*.iml
+*.ipr
+*.iws
+
+# Dart / Flutter generated files
+.dart_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
+.metadata
+pubspec.lock
+
+# Build & Coverage
+build/
+coverage/
+
+# OS files
+.DS_Store

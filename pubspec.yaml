@@ -1,0 +1,28 @@
+name: flutter_theme_circle_animation
+description: >
+  A Flutter package that provides a beautiful circle reveal animation
+  for theme switching, similar to Telegram's theme transition effect.
+  Zero dependencies beyond Flutter.
+version: 0.0.1
+homepage: https://github.com/youssefsz/flutter_theme_circle_animation
+repository: https://github.com/youssefsz/flutter_theme_circle_animation
+issue_tracker: https://github.com/youssefsz/flutter_theme_circle_animation/issues
+
+topics:
+  - theme
+  - animation
+  - dark-mode
+  - ui
+
+environment:
+  sdk: ^3.11.0
+  flutter: ">=1.17.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^6.0.0
