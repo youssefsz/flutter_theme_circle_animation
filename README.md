@@ -1,9 +1,5 @@
 # flutter_theme_circle_animation
 
-<p align="center">
-  <img src="https://raw.githubusercontent.com/youssefsz/flutter_theme_circle_animation/main/doc/screenshots/preview.gif" width="280px" alt="Theme circle animation preview">
-</p>
-
 A circle reveal animation for Flutter theme switching, inspired by Telegram's theme transition. Captures the current screen, toggles your theme, then animates a growing circle to reveal the new theme underneath.
 
 No external dependencies. Works with any state management approach.
@@ -13,6 +9,12 @@ No external dependencies. Works with any state management approach.
 | Android | iOS |
 |---------|-----|
 | ✅       | ✅   |
+
+## Preview
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/youssefsz/flutter_theme_circle_animation/main/doc/screenshots/preview.gif" width="320px" alt="Theme circle animation preview">
+</p>
 
 ## Installation
 
