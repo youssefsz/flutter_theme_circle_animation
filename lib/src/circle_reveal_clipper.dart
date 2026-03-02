@@ -6,10 +6,19 @@ class CircleRevealClipper extends CustomClipper<Path> {
   final Offset center;
   final double radius;
 
-  CircleRevealClipper({required this.center, required this.radius});
+  final bool isReverse;
+
+  CircleRevealClipper({
+    required this.center,
+    required this.radius,
+    this.isReverse = false,
+  });
 
   @override
   Path getClip(Size size) {
+    if (isReverse) {
+      return Path()..addOval(Rect.fromCircle(center: center, radius: radius));
+    }
     return Path()
       ..addRect(Rect.fromLTWH(0, 0, size.width, size.height))
       ..addOval(Rect.fromCircle(center: center, radius: radius))
@@ -18,6 +27,8 @@ class CircleRevealClipper extends CustomClipper<Path> {
 
   @override
   bool shouldReclip(covariant CircleRevealClipper oldClipper) {
-    return center != oldClipper.center || radius != oldClipper.radius;
+    return center != oldClipper.center ||
+        radius != oldClipper.radius ||
+        isReverse != oldClipper.isReverse;
   }
 }

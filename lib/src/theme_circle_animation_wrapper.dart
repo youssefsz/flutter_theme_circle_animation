@@ -67,6 +67,7 @@ class ThemeCircleAnimationState extends State<ThemeCircleAnimation>
   ui.Image? _capturedImage;
   Offset _animationOrigin = Offset.zero;
   bool _isAnimating = false;
+  bool _isReversed = false;
   double _maxRadius = 0;
 
   @override
@@ -157,12 +158,14 @@ class ThemeCircleAnimationState extends State<ThemeCircleAnimation>
     required VoidCallback onToggle,
     Duration? duration,
     Curve? curve,
+    bool isReverse = false,
   }) {
     return toggle(
       onToggle: onToggle,
       origin: originFromContext(context),
       duration: duration,
       curve: curve,
+      isReverse: isReverse,
     );
   }
 
@@ -177,11 +180,14 @@ class ThemeCircleAnimationState extends State<ThemeCircleAnimation>
   /// [duration] overrides the default animation duration for this toggle.
   ///
   /// [curve] overrides the default animation curve for this toggle.
+  ///
+  /// [isReverse] when true shrinks the circle revealing the new theme, instead of expanding.
   Future<void> toggle({
     required VoidCallback onToggle,
     Offset? origin,
     Duration? duration,
     Curve? curve,
+    bool isReverse = false,
   }) async {
     if (_isAnimating) return;
     _isAnimating = true;
@@ -206,6 +212,7 @@ class ThemeCircleAnimationState extends State<ThemeCircleAnimation>
         origin ?? Offset(screenSize.width / 2, screenSize.height / 2);
     _maxRadius = _calculateMaxRadius(screenSize, _animationOrigin);
     _capturedImage = image;
+    _isReversed = isReverse;
 
     // 3. Apply per-call overrides
     if (duration != null) _controller.duration = duration;
@@ -237,6 +244,7 @@ class ThemeCircleAnimationState extends State<ThemeCircleAnimation>
     _capturedImage?.dispose();
     _capturedImage = null;
     _isAnimating = false;
+    _isReversed = false;
     _controller.reset();
 
     // Restore defaults if overrides were applied
@@ -265,7 +273,10 @@ class ThemeCircleAnimationState extends State<ThemeCircleAnimation>
                 return ClipPath(
                   clipper: CircleRevealClipper(
                     center: _animationOrigin,
-                    radius: _maxRadius * _animation.value,
+                    radius: _isReversed
+                        ? _maxRadius * (1 - _animation.value)
+                        : _maxRadius * _animation.value,
+                    isReverse: _isReversed,
                   ),
                   child: child,
                 );

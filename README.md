@@ -22,7 +22,7 @@ Add the package to your `pubspec.yaml`:
 
 ```yaml
 dependencies:
-  flutter_theme_circle_animation: ^0.0.1
+  flutter_theme_circle_animation: ^1.0.0
 ```
 
 Then run:
@@ -121,6 +121,7 @@ Computes the animation origin from a widget's position and starts the reveal.
 | `onToggle` | `VoidCallback` | required       | Callback to switch your theme state.       |
 | `duration` | `Duration?`    | widget default | Override the animation duration.           |
 | `curve`    | `Curve?`       | widget default | Override the animation curve.              |
+| `isReverse`| `bool`         | `false`        | Reverse the animation (shrink instead of expand). |
 
 #### toggle()
 
@@ -132,6 +133,7 @@ Starts the reveal animation with a manual origin point.
 | `origin`   | `Offset?`      | screen center  | Position the circle expands from.          |
 | `duration` | `Duration?`    | widget default | Override the animation duration.           |
 | `curve`    | `Curve?`       | widget default | Override the animation curve.              |
+| `isReverse`| `bool`         | `false`        | Reverse the animation (shrink instead of expand). |
 
 #### originFromContext() (static)
 
@@ -154,6 +156,7 @@ A ready-made `IconButton` with an animated sun/moon icon.
 | `iconTransitionDuration` | `Duration`     | `Duration(milliseconds: 300)` | Icon crossfade duration.        |
 | `iconSize`               | `double?`      | default                       | Icon size.                      |
 | `tooltip`                | `String?`      | `'Toggle theme'`              | Tooltip text.                   |
+| `enableReverseAnimation` | `bool`         | `true`                        | When returning to light mode, play reverse animation. |
 
 ## Tips
 

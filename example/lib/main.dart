@@ -14,6 +14,7 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   bool _isDarkMode = false;
+  bool _enableReverseAnimation = true;
 
   ThemeData get _lightTheme => ThemeData(
     brightness: Brightness.light,
@@ -38,7 +39,10 @@ class _MyAppState extends State<MyApp> {
         curve: Curves.easeInOutCubic,
         child: _HomeScreen(
           isDarkMode: _isDarkMode,
+          enableReverseAnimation: _enableReverseAnimation,
           onToggle: () => setState(() => _isDarkMode = !_isDarkMode),
+          onToggleReverseAnimation: (value) =>
+              setState(() => _enableReverseAnimation = value),
         ),
       ),
     );
@@ -47,9 +51,16 @@ class _MyAppState extends State<MyApp> {
 
 class _HomeScreen extends StatelessWidget {
   final bool isDarkMode;
+  final bool enableReverseAnimation;
   final VoidCallback onToggle;
+  final ValueChanged<bool> onToggleReverseAnimation;
 
-  const _HomeScreen({required this.isDarkMode, required this.onToggle});
+  const _HomeScreen({
+    required this.isDarkMode,
+    required this.enableReverseAnimation,
+    required this.onToggle,
+    required this.onToggleReverseAnimation,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -58,7 +69,11 @@ class _HomeScreen extends StatelessWidget {
         title: const Text('Theme Circle Animation'),
         actions: [
           // Option 1: Use the pre-built ThemeCircleSwitch
-          ThemeCircleSwitch(isDarkMode: isDarkMode, onToggle: onToggle),
+          ThemeCircleSwitch(
+            isDarkMode: isDarkMode,
+            onToggle: onToggle,
+            enableReverseAnimation: enableReverseAnimation,
+          ),
         ],
       ),
       body: Center(
@@ -83,7 +98,19 @@ class _HomeScreen extends StatelessWidget {
                 color: Theme.of(context).colorScheme.onSurface.withAlpha(153),
               ),
             ),
-            const SizedBox(height: 48),
+            const SizedBox(height: 24),
+            ConstrainedBox(
+              constraints: const BoxConstraints(maxWidth: 400),
+              child: SwitchListTile(
+                title: const Text('Reverse Animation'),
+                subtitle: const Text(
+                  'Shrink circle when returning to Light Mode',
+                ),
+                value: enableReverseAnimation,
+                onChanged: onToggleReverseAnimation,
+              ),
+            ),
+            const SizedBox(height: 24),
 
             // Option 2: Trigger programmatically from any widget
             Builder(
@@ -93,6 +120,7 @@ class _HomeScreen extends StatelessWidget {
                     ThemeCircleAnimation.of(buttonContext)?.toggleFromWidget(
                       context: buttonContext,
                       onToggle: onToggle,
+                      isReverse: enableReverseAnimation ? isDarkMode : false,
                     );
                   },
                   icon: const Icon(Icons.palette),

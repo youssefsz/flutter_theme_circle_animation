@@ -36,6 +36,10 @@ class ThemeCircleSwitch extends StatelessWidget {
   /// Tooltip for the button.
   final String? tooltip;
 
+  /// Whether to play the animation in reverse when switching back to light mode.
+  /// Defaults to true.
+  final bool enableReverseAnimation;
+
   const ThemeCircleSwitch({
     super.key,
     required this.isDarkMode,
@@ -45,6 +49,7 @@ class ThemeCircleSwitch extends StatelessWidget {
     this.iconTransitionDuration = const Duration(milliseconds: 300),
     this.iconSize,
     this.tooltip,
+    this.enableReverseAnimation = true,
   });
 
   @override
@@ -76,7 +81,11 @@ class ThemeCircleSwitch extends StatelessWidget {
       onPressed: () {
         final animState = ThemeCircleAnimation.of(context);
         if (animState != null) {
-          animState.toggleFromWidget(context: context, onToggle: onToggle);
+          animState.toggleFromWidget(
+            context: context,
+            onToggle: onToggle,
+            isReverse: enableReverseAnimation ? isDarkMode : false,
+          );
         } else {
           // No ThemeCircleAnimation ancestor — just toggle directly
           onToggle();
