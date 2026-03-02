@@ -1,3 +1,7 @@
+## 1.0.1
+
+* **Fix**: Restrict supported platforms to Android and iOS in `pubspec.yaml` to prevent pub.dev from displaying unsupported platform badges like Linux, macOS, web, and Windows.
+
 ## 1.0.0
 
 * **New Feature**: Added support for reverse animation! Shrinking circles can now be used when switching back to light mode.
