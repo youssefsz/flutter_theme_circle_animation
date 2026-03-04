@@ -3,8 +3,8 @@ description: >
   A Flutter package that provides a beautiful circle reveal animation
   for theme switching, similar to Telegram's theme transition effect.
   Zero dependencies beyond Flutter.
-version: 1.0.1
-homepage: https://github.com/youssefsz/flutter_theme_circle_animation
+version: 1.0.2
+homepage: https://youssef.tn/flutter-theme-circle-animation/
 repository: https://github.com/youssefsz/flutter_theme_circle_animation
 issue_tracker: https://github.com/youssefsz/flutter_theme_circle_animation/issues
 

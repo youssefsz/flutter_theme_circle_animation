@@ -1,3 +1,7 @@
+## 1.0.2
+
+* Updated `homepage` URL in `pubspec.yaml` to point to the new interactive landing page.
+
 ## 1.0.1
 
 * **Fix**: Restrict supported platforms to Android and iOS in `pubspec.yaml` to prevent pub.dev from displaying unsupported platform badges like Linux, macOS, web, and Windows.
